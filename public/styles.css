@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.pic {
+  width: 100px;
+}
+.kitty {
+  display: inline-block;
+  width: 24.5%;
+  margin: 0;
+  padding: 0;
+}

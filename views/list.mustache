@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  {{>_head}}
+  <body>
+    <div class="container">
+      {{#kittehs}}
+        {{>_kitty}}
+      {{/kittehs}}
+      {{^kittehs}}
+         <p>sorry no kitties</p>
+      {{/kittehs}}
+    </div>
+  </body>
+</html>
