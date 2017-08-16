@@ -35,7 +35,9 @@ app.post('/people', function (request, response) {
 // POST ~ Create
 // PUT ~ Update
 // DELETE ~ delete removing
+// http://localhost:3000/people/23532/whatsup/hello/goodbye
 app.get('/people/:personId', function (request, response) {
+  console.log('request.params', request.params)
   const person = personDal.getPerson(request.params.personId)
   if (person.id) {
     response.render('personDetail', person)
@@ -44,7 +46,7 @@ app.get('/people/:personId', function (request, response) {
   }
 })
 app.put('/people/:personId', function (request, response) {
-  console.log('request body', request.body);
+  console.log('request body', request.body)
   personDal.updatePerson(request.body)
   const personId = request.params.personId
   response.send('it worked')
