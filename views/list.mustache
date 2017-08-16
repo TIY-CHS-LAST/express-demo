@@ -2,13 +2,14 @@
 <html>
   {{>_head}}
   <body>
-    <div class="container">
-      {{#kittehs}}
-        {{>_kitty}}
-      {{/kittehs}}
-      {{^kittehs}}
-         <p>sorry no kitties</p>
-      {{/kittehs}}
-    </div>
+    <main class="cf w-100">
+      {{#people}}
+        {{>_person}}
+      {{/people}}
+      {{^people}}
+         <p>sorry no people</p>
+      {{/people}}
+    </main>
+    <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
