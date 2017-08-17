@@ -12,6 +12,7 @@ mainParent.addEventListener('click', function (event) {
   if (event.target.getAttribute('name') === 'deleteUser') {
     const userId = event.target.getAttribute('data-id')
     deleteUser(userId)
+    window.location.href = '/people'
   }
 })
 // const deleteBtn = document.querySelectorAll('button[name="deleteUser"]')

@@ -59,7 +59,7 @@ app.get('/people/:personId/update', function (request, response) {
 
 app.delete('/people/:personId', function (request, response) {
   personDal.removePerson(request.params.personId)
-  response.redirect('/createPerson')
+  response.status(200).send('success')
 })
 app.set('port', 3000)
 
