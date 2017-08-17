@@ -3,7 +3,9 @@ const app = express()
 const mustacheExpress = require('mustache-express')
 const personDal = require('./dal')
 const bodyParser = require('body-parser')
-
+const path = require('path')
+const fs = require('fs-extra')
+const Busboy = require('busboy')
 // Register '.mustache' extension with The Mustache Express
 app.engine('mustache', mustacheExpress())
 app.set('view engine', 'mustache')
@@ -60,6 +62,23 @@ app.get('/people/:personId/update', function (request, response) {
 app.delete('/people/:personId', function (request, response) {
   personDal.removePerson(request.params.personId)
   response.status(200).send('success')
+})
+app.get('/upload', function (request, response) {
+  response.render('upload')
+})
+app.post('/upload', function (request, response) {
+  const busboy = new Busboy({ headers: request.headers })
+
+  busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+    const saveTo = path.join('./public/uploads/', path.basename(filename))
+    file.pipe(fs.createWriteStream(saveTo))
+  })
+  busboy.on('finish', function () {
+    response.writeHead(200, { Connection: 'close' })
+    response.end('Uploaded file to: /uploads')
+  })
+  // Parse HTTP-POST upload
+  return request.pipe(busboy)
 })
 app.set('port', 3000)
 
