@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  {{>_head}}
+  <body>
+    <h1>Update {{name}}</h1>
+    <form id="updatePerson">
+      <input type="text" name="id" value="{{id}}" >
+      <input type="text" name="name" value="{{name}}" >
+      <input type="text" name="jobTitle" value="{{jobTitle}}" >
+      <input type="email" name="email" value="{{email}}" >
+      <input type="text" name="username" value="{{username}}" >
+      <input type="text" name="avatar" value="{{avatar}}" >
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    <script type="text/javascript">
+      const form = document.querySelector('#updatePerson')
+      form.addEventListener('submit', function (event) {
+        event.preventDefault()
+        const updatedPerson = {
+          id: event.target.querySelector('input[name="id"]').value,
+          name: event.target.querySelector('input[name="name"]').value,
+          jobTitle: event.target.querySelector('input[name="jobTitle"]').value,
+          email: event.target.querySelector('input[name="email"]').value,
+          username: event.target.querySelector('input[name="username"]').value,
+          avatar: event.target.querySelector('input[name="avatar"]').value
+        }
+        fetch(`/people/${updatedPerson.id}`, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: 'PUT',
+          body: JSON.stringify(updatedPerson)
+        })
+          .then(function (res) {
+            console.log(res, 'updated person')
+          })
+
+      })
+    </script>
+  </body>
+</html>
