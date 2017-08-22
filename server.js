@@ -24,6 +24,4 @@ app.use('/people', peopleRoutes)
 app.use('/upload', uploadRoutes)
 app.set('port', 3000)
 
-app.listen(app.get('port'), function () {
-  console.log('Application has started at port 3000')
-})
+module.exports = app
